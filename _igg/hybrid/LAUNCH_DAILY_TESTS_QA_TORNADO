@@ -1,0 +1,47 @@
+#!/bin/sh
+
+VERSION_DIR=/develop/home/iouri/_fo51_clean
+EXE_DIR=$VERSION_DIR/LINUX_GCC_4_3_64
+
+# hybrid looks for its files in subdirectories in NUMECA_DIR
+NUMECA_DIR=$VERSION_DIR
+export NUMECA_DIR
+
+# shared liibraries for hybrid
+LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:$EXE_DIR/_lib_s:$EXE_DIR/_lib_s/_dtk2014.2:$EXE_DIR/_lib_s/_netcdf-4.1.3
+export LD_LIBRARY_PATH
+
+# full path to hybrid executable (local version, remote execution is not supported yet) ...
+#HYB_VERSION=$EXE_DIR/_bin/hexpresshybrid
+# ... or the name of a build available in /common/numeca
+HYB_VERSION=hexpresshybridopen51a7
+
+# reference version for daily test
+REF_VERSION=hybridopen51
+
+# location of the test script
+SCRIPT_DIR=$VERSION_DIR/_src/igg/_python/hybrid
+
+# location of the database
+DB_dir="/develop/tests/hybrid/_test_cases_QA"
+
+# location of the test lists
+LIST_DIR=$SCRIPT_DIR
+#LIST_DIR=.
+
+# list name
+LIST_NAME=LIST_TESTS_QA
+
+# possibility to extend configuration file
+CONF_MODIFY=""
+#CONF_MODIFY+="DEBUGLEVEL-3-\n-\n"
+
+# output directory
+OUT_DIR=TEST_RESULTS${HYB_VERSION}_${LIST_NAME}
+
+# number of cores
+NUMPROC=16
+
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/${LIST_NAME} -db $DB_dir -out_dir $OUT_DIR -conf_modify $CONF_MODIFY -daily_test -refversion $REF_VERSION -hosts tornado
+
+

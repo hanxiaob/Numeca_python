@@ -1,0 +1,6 @@
+#!/bin/sh
+
+./LAUNCH_LIST LIST_TESTS_S2V
+
+
+

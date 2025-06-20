@@ -1,0 +1,31 @@
+#!/bin/sh
+# script to run lists of tests
+
+LIST_DIR="."
+HYB_VERSION="hexpresshybridopen43a3"
+#HYB_VERSION="/develop/home/vgael/_fo43/LINUX_GCC_4_3_64/_bin/hexpresshybrid"
+NUMPROC="16"
+CONF_MODIFY=""
+SCRIPT_DIR="."
+
+LIST_FILE="LIST_TESTS_VG"
+DB_dir="/develop/tests/hybrid/_test_cases"
+OUT_DIR="TEST_RESULTS_VG"
+
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/$LIST_FILE -db $DB_dir -out_dir $OUT_DIR -conf_modify $CONF_MODIFY
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result -list $LIST_DIR/$LIST_FILE -out_dir $OUT_DIR
+
+LIST_FILE="LIST_TESTS_QA"
+DB_dir="/develop/tests/hybrid/_test_cases_QA"
+OUT_DIR="TEST_RESULTS_QA"
+
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/$LIST_FILE -db $DB_dir -out_dir $OUT_DIR -conf_modify $CONF_MODIFY
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result -list $LIST_DIR/$LIST_FILE -out_dir $OUT_DIR
+
+LIST_FILE="LIST_TESTS_QA_FULLHEXA"
+DB_dir="/develop/tests/hybrid/_test_cases_QA_full_hexa"
+OUT_DIR="TEST_RESULTS_QA_FULLHEXA"
+
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/$LIST_FILE -db $DB_dir -out_dir $OUT_DIR -conf_modify $CONF_MODIFY
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result -list $LIST_DIR/$LIST_FILE -out_dir $OUT_DIR
+

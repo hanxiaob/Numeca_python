@@ -1,0 +1,9 @@
+#!/bin/sh
+# script to run a single test
+
+. ./ENVIRONMENT
+
+python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -project $1
+
+
+

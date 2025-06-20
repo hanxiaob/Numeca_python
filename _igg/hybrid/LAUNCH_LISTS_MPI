@@ -1,0 +1,47 @@
+#!/bin/sh
+# script to run lists of tests
+# Usage: ./LAUNCH_LISTS_MPI <path to hybrid_with_lib> <number of cores (optional)>
+
+LIST_DIR="."
+HYB_VERSION=$1
+if [ $# -eq 2 ]
+then
+    NUMPROC=$2
+else
+    NUMPROC=16
+fi
+
+CONF_MODIFY="DISTRIBUTEDPARALLELIZATION\\n"
+SCRIPT_DIR="."
+
+NUMECA_LINUX_PREFIX="/common/numeca/fineopen71a0/LINUX"
+MPI_DIR="$NUMECA_LINUX_PREFIX/_mpi/_ompi1.6"
+export NUMECA_DIR="/common/numeca/fineopen71a0/"
+export LD_LIBRARY_PATH="$NUMECA_LINUX_PREFIX/_lib_sx86_64dtk:$NUMECA_LINUX_PREFIX/_lib_sx86_64:$NUMECA_LINUX_PREFIX/install/flex64:/lib/x86_64-linux-gnu"
+export OPAL_PREFIX=$MPI_DIR
+
+#Usage:
+#LIST_FILE="<Path to a list with test names>"
+#DB_dir="<Path to a database>"
+#OUT_DIR="<Output directory name>_$NUMPROC"
+
+#python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/$LIST_FILE -db $DB_dir -out_dir $OUT_DIR -mpi $MPI_DIR -conf_modify $CONF_MODIFY
+#python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result -list $LIST_DIR/$LIST_FILE -out_dir $OUT_DIR
+
+
+
+#Examples:
+#LIST_FILE="LIST_TESTS_MPI_LIGHT"
+#DB_dir="/home/duallab/yurySh/MPI_mq_testing/DB/LIGHT"
+#OUT_DIR="TEST_RESULTS_MPI_LIGHT_$NUMPROC"
+
+#python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/$LIST_FILE -db $DB_dir -out_dir $OUT_DIR -mpi $MPI_DIR -conf_modify $CONF_MODIFY
+#python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result -list $LIST_DIR/$LIST_FILE -out_dir $OUT_DIR
+
+#LIST_FILE="LIST_TESTS_MPI_MIDDLE"
+#DB_dir="/home/duallab/yurySh/MPI_mq_testing/DB/MIDDLE"
+#OUT_DIR="TEST_RESULTS_MPI_MIDDLE_$NUMPROC"
+
+#python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/$LIST_FILE -db $DB_dir -out_dir $OUT_DIR -mpi $MPI_DIR -conf_modify $CONF_MODIFY
+#python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result -list $LIST_DIR/$LIST_FILE -out_dir $OUT_DIR
+

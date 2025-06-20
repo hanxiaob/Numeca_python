@@ -1,0 +1,18 @@
+#!/bin/sh
+# script to run a list of tests
+
+. ./ENVIRONMENT
+
+if [ $# = 0 ] ; then
+    echo "Usage: LAUNCH_LIST [<hosts>] <list_file>"
+    exit
+fi
+
+if [ $# = 1 ] ; then
+        python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -numproc $NUMPROC -list $LIST_DIR/$1 -db $DB_dir -out_dir $OUT_DIR -conf_modify $CONF_MODIFY
+else
+        python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -hosts $1 -numproc $NUMPROC -list $LIST_DIR/$2 -db $DB_dir -out_dir $OUT_DIR -conf_modify $CONF_MODIFY
+fi
+
+
+

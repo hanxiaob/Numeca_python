@@ -1,0 +1,5 @@
+#!/bin/sh
+
+python HYB_test2.py hexpresshexa212_2-2 -compare $*
+
+

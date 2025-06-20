@@ -1,0 +1,12 @@
+#!/bin/sh
+
+. ./ENVIRONMENT
+
+if [ $# = 0 ] ; then
+	#python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result 
+	python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -db $DB_dir -out_dir $OUT_DIR -batch -result
+else
+	python $SCRIPT_DIR/HYB_test2.py $HYB_VERSION -batch -result -list $LIST_DIR/$1
+fi
+
+
